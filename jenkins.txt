@@ -1,5 +1,8 @@
 docker run -d --name mycentos-jenkins -p 2222:22 -p 8888:80 -p 8088:8080 centos:7 /usr/sbin/init
 
+mycentos-jenkins-asai-oevops:v1
+
+docker run -d --name mycentos-jenkins -p 2222:22 -p 8888:80 -p 8088:8080 -p 8090:8090 mycentos-jenkins-asai-oevops:v1 /usr/sbin/init
 
 jenking installtion 
 
