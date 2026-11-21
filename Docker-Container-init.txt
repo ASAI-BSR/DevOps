@@ -1,0 +1,51 @@
+Steps to Enable SSH Access to CentOS Container
+Run CentOS container with port mapping  
+Start the container and expose port 22:
+
+bash
+docker --name centos run -d -it -p 2222:22 centos:7 /bin/bash
+-p 2222:22 → maps host port 2222 to container port 22.
+
+You’ll connect to localhost:2222 from PuTTY.
+
+Install SSH server inside the container:
+
+bash
+
+docker --name centos run -d -it -p 2222:22 centos:7 /bin/bash
+
+
+sed -i 's|mirrorlist=|#mirrorlist=|g' /etc/yum.repos.d/CentOS-Base.repo
+
+sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Base.repo
+yum install -y openssh-server openssh-clients
+
+ssh-keygen -A
+
+/usr/sbin/sshd -D
+This keeps the SSH daemon running in the foreground.
+
+Set root password
+
+bash
+passwd
+Enter a password (you’ll use this in PuTTY).
+
+Connect with PuTTY
+
+Hostname: localhost
+
+Port: 2222 (since we mapped host 2222 → container 22)
+
+Username: root (or another user you created)
+
+Password: the one you set with passwd.
+
+docker run -d -p 2222:22 -p 8888:80 centos:7 /usr/sbin/init
+
+docker run -d --name mycentos -p 2222:22 -p 8888:80 centos:7 /usr/sbin/init
+
+httpd -DFOREGROUND  -- Start apache
+
+
+docker run -d --name mycentos centos:7 /bin/bash

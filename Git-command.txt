@@ -1,0 +1,104 @@
+Here are the most commonly used Git commands for developers managing code:
+
+1. Configure Git
+Shell
+git config --global user.name "Gaurav"
+git config --global user.email "gaurav@example.com"
+git config --list
+2. Create and Clone Repository
+Shell
+git init  
+git clone https://github.com/user/repo.git
+3. Check Repository Status
+Shell
+git status  
+4. Add Files to Staging
+Shell
+git add file.txt
+git add .
+git add *.sh
+5. Commit Changes
+Shell
+git commit -m "Initial commit"
+git commit -am "Updated script"
+6. View Commit History
+Shell
+git log
+git log --oneline
+git log --graph --all
+7. Branch Management
+Shell
+git branch
+git branch feature-login
+git checkout feature-login
+git checkout -b feature-login
+git switch feature-login
+8. Merge Branches
+Shell
+git checkout main
+git merge feature-login
+
+9. Remote Repository Commands
+Shell
+git remote -v
+git remote add origin https://github.com/user/repo.git
+10. Push Code
+Shell
+git push origin main
+git push -u origin main
+11. Pull Latest Changes
+Shell
+git pull origin 	
+12. Fetch Changes
+Shell
+git fetch
+git fetch --all
+13. View File Changes
+Shell
+git diff
+git diff file.txt
+git diff --staged
+14. Undo Changes
+Shell
+git restore file.txt
+git restore .
+git reset HEAD file.txt
+15. Remove Files
+Shell
+git rm file.txt
+git rm -r directory/
+
+
+18. Reset Commits
+Shell
+git reset --soft HEAD~1
+git reset --mixed HEAD~1
+git reset --hard HEAD~1
+19. Git Workflow Example
+Shell
+git clone git@github.com:shikoi1234/webui.git
+ 
+git checkout -b feature-dev
+ 
+# Modify files
+ 
+git add .
+git commit -m "Added login functionality"
+ 
+git push origin feature-dev
+ 
+# Create Pull Request in GitLab/GitHub
+Git Commands Frequently Asked in DevOps Interviews
+Shell
+git status
+git add .
+git commit -m "message"
+git push
+git pull
+git fetch
+git merge
+git rebase
+git revert
+git tag
+git branch
+git checkout

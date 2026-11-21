@@ -1,0 +1,39 @@
+docker run -d --name mycentos-jenkins -p 2222:22 -p 8888:80 -p 8088:8080 centos:7 /usr/sbin/init
+
+
+jenking installtion 
+
+sed -i 's|mirrorlist=|#mirrorlist=|g' /etc/yum.repos.d/CentOS-Base.repo
+sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Base.repo
+
+
+yum install fontconfig java-21-openjdk wget git -y 
+
+cd /opt
+
+wget -O jdk21.tar.gz "https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse"
+
+tar -xf jdk21.tar.gz
+
+export JAVA_HOME=$(find /opt -maxdepth 1 -type d -name "jdk-21*" | head -1)
+export PATH=$JAVA_HOME/bin:$PATH
+
+
+
+
+
+ wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+ rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+ 
+yum install jenkins -y
+
+yum install git -y
+
+#systemctl start jenkins
+# systemctl enable jenkins
+ 
+nohup java -jar /usr/share/java/jenkins.war --httpPort=8080 &
+ 
+ 
+  firewall-cmd --permanent --zone=public --add-port=8080/tcp
+ firewall-cmd --reload
