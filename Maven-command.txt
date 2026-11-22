@@ -1,0 +1,152 @@
+What is Maven (mvn)?
+
+Maven is a popular build and dependency management tool for Java projects. It helps developers:
+
+Compile Java code
+Download required libraries (dependencies)
+Run tests
+Package applications into JAR/WAR files
+Deploy applications
+
+The command-line executable for Maven is mvn.
+
+Check Maven Version
+Shell
+mvn -version
+
+Example output:
+
+Plain Text
+Apache Maven 3.9.11
+Java version: 17
+Common Maven Commands
+
+1. Compile Source Code
+Shell
+mvn compile
+
+Compiles Java source files from the src/main/java directory.
+
+2. Run Unit Tests
+Shell
+mvn test
+
+Executes tests from the src/test/java directory.
+
+3. Create JAR Package
+Shell
+mvn package
+
+Output:
+
+Plain Text
+target/myapp-1.0.jar
+4. Clean Previous Build
+Shell
+mvn clean
+
+Deletes the target directory.
+
+5. Clean and Build
+Shell
+mvn clean package
+
+Most commonly used command in CI/CD pipelines such as Jenkins.
+
+6. Install Package to Local Maven Repository
+Shell
+mvn install
+
+Copies the generated JAR into the local Maven repository:
+
+Plain Text
+~/.m2/repository
+7. Download Dependencies
+Shell
+mvn dependency:resolve
+
+Downloads all dependencies defined in pom.xml.
+
+Example Maven Project
+
+Project Structure:
+
+Plain Text
+my-app/
+├── pom.xml
+├── src/
+│ ├── main/java/
+│ │ └── App.java
+│ └── test/java/
+└── target/
+Simple pom.xml
+XML
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+<modelVersion>4.0.0</modelVersion>
+ 
+<groupId>com.example</groupId>
+<artifactId>my-app</artifactId>
+<version>1.0</version>
+ 
+<dependencies>
+<dependency>
+<groupId>junit</groupId>
+<artifactId>junit</artifactId>
+<version>4.13.2</version>
+<scope>test</scope>
+</dependency>
+</dependencies>
+</project>
+Maven Build Lifecycle
+Plain Text
+validate
+↓
+compile
+↓
+test
+↓
+package
+↓
+verify
+↓
+install
+↓
+deploy
+
+Example:
+
+Shell
+mvn clean install
+
+This command:
+
+Deletes old builds (clean)
+Compiles code (compile)
+Runs tests (test)
+Creates JAR/WAR (package)
+Installs artifact into local repository (install)
+Maven in Jenkins CI/CD
+
+A common Jenkins pipeline step:
+
+Shell
+git clone https://github.com/company/project.git
+cd project
+mvn clean package
+
+After the build:
+
+Plain Text
+target/project-1.0.jar
+
+can be deployed to Tomcat, a Docker container, or a server.
+
+For a DevOps interview, the most frequently used Maven commands are:
+
+Shell
+mvn clean
+mvn compile
+mvn test
+mvn package
+mvn install
+mvn clean install
